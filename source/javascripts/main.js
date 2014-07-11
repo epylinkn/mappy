@@ -12,4 +12,25 @@ $(document).ready(function() {
     }
   });
 
+  var bombs = [
+    {
+      radius: 25,
+      latitude: 40.71,
+      longitude: -74.01
+    },
+  ]
+
+  var get_bombs = function() {
+    $.ajax({
+      type: 'GET',
+      url: 'http://local.howaboutwe.com:3000/api/mappy?callback=?',
+      success: function(data) {
+        var bombs = [data];
+        map.bubbles(bombs);
+      }
+    });
+  }
+
+  setInterval(get_bombs, 1000);
+
 });
